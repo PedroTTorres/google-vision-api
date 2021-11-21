@@ -36,3 +36,16 @@ def detect_text(path):
     texts = response.text_annotations
 
     return texts
+
+def localize_objects(path):
+
+    file_name = os.path.abspath(path)
+
+
+    with io.open(file_name, 'rb') as image_file:
+        content = image_file.read()
+
+    objects = client.object_localization(
+        content=content).localized_object_annotations
+
+    return objects
